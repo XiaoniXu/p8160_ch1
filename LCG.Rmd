@@ -1,0 +1,31 @@
+---
+title: "LCG"
+author: "Xiaoni Xu"
+date: "2025-01-27"
+output: github_document
+---
+
+```{r}
+lcg <- function(a, c, m, seed, nnum = 100) {
+ans <- rep(0, nnum) # Initialize the array
+ans[1] <- (a * seed + c) %% m
+for(i in 2:nnum)
+ans[i] <- (a * ans[i - 1] + c) %% m
+return(ans)
+}
+rannums <- lcg(a = 9, c = 5, m = 16, seed = 8, nnum = 20)
+rannums
+
+```
+
+```{r}
+randudat <- lcg(a = 65539, m = 2^31, c = 0, seed = 123456,
+nnum = 500) / 2^31
+par(mfrow=c(1,2))
+plot(randudat)
+hist(randudat)
+
+# the dots in the plot should evenly fill the space 
+```
+
+
